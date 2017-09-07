@@ -1,0 +1,12 @@
+dispatch:
+  # Send core requests to frontend.
+  - url: "*/api/*"
+    service: api
+
+  # Send login requests to frontend.
+  - url: "*/login/*"
+    service: default
+
+  # Default service serves the typical web resources and all static resources.
+  - url: "*/favicon.ico"
+    service: default

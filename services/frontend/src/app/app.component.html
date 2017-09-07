@@ -1,0 +1,65 @@
+<!--
+  Copyright 2017 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+
+<md-sidenav-container fullscreen>
+  <md-sidenav mode='side' #start layout="column" class="md-sidenav-left md-whiteframe-z2">
+    <md-toolbar  *ngIf="isLoggedIn" color="primary" id="avatar-holder">
+        <md-toolbar-row>
+            <user-avatar [url]="user.photoURL"></user-avatar>
+        </md-toolbar-row>
+        <md-toolbar-row>
+          <span>{{user.displayName}}</span>
+          <button md-icon-button [mdMenuTriggerFor]="menu">
+            <md-icon>expand_more</md-icon>
+          </button>
+          <md-menu #menu="mdMenu">
+            <button (click)="logout();start.close()" md-menu-item>
+              <span>Sign Out</span>
+            </button>
+          </md-menu>
+        </md-toolbar-row>
+      </md-toolbar>
+    <md-nav-list>
+      <div *ngFor="let navItem of navItems">
+      <md-list-item md-ink-ripple
+         (click)="start.open()"
+         routerLinkActive
+         #routerLinkActiveInstance="routerLinkActive"
+         [attr.tabindex]="routerLinkActiveInstance.isActive ? 0 : -1"
+         [routerLink]="[navItem.route]">
+         <div class="inset">
+          <md-icon>{{navItem.icon}}</md-icon>
+            {{navItem.name}}
+        </div>
+      </md-list-item>
+    </div>
+    </md-nav-list>
+  </md-sidenav>
+  <div>
+    <md-toolbar color="primary">
+      <button md-icon-button (click)="start.toggle()">
+        <md-icon class="md-24">menu</md-icon>
+      </button>
+    </md-toolbar>
+
+    <div class="content">
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</md-sidenav-container>

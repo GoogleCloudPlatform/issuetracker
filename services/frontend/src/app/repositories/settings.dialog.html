@@ -1,0 +1,96 @@
+<!--
+  Copyright 2017 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<div class="dialog-container">
+    <h1> Notification Settings for {{repo}} </h1>
+    <div>
+      <h2> Content and Frequency </h2>
+      <form (ngSubmit)="onSubmit()" #settingsForm="ngForm">
+      <div>
+        <p>New issues created on repository</p>
+        <div style="float:right">
+            <md-select placeholder="Frequency" [(ngModel)]="settings.IssueOpen" name="IssueOpen">
+                <md-option *ngFor="let item of frequency" [value]="item.value">
+                  {{item.view}}
+                </md-option>
+            </md-select>
+          </div>
+      </div>
+      <br>
+      <div>
+          <p>Issues closed on repository</p>
+          <div style="float:right">
+              <md-select placeholder="Frequency" [(ngModel)]="settings.IssueClose"
+                name="IssueClose">
+                  <md-option *ngFor="let item of frequency" [value]="item.value">
+                    {{item.view}}
+                  </md-option>
+              </md-select>
+            </div>
+      </div>
+      <br>
+      <div>
+          <p>Issues reopened on repository</p>
+          <div style="float:right">
+              <md-select placeholder="Frequency" [(ngModel)]="settings.IssueReopen"
+                name="IssueReopen">
+                  <md-option *ngFor="let item of frequency" [value]="item.value">
+                    {{item.view}}
+                  </md-option>
+              </md-select>
+            </div>
+      </div>
+      <br>
+      <div>
+          <p>New comments on open issues</p>
+          <div style="float:right">
+              <md-select placeholder="Frequency" [(ngModel)]="settings.NewComment"
+                name="NewComment">
+                  <md-option *ngFor="let item of frequency" [value]="item.value">
+                    {{item.view}}
+                  </md-option>
+              </md-select>
+            </div>
+      </div>
+      <br>
+      <div>
+          <p>Repositories with no new comments</p>
+          <div style="float:right">
+              <md-select placeholder="Frequency" [(ngModel)]="settings.NoComment" name="NoComment">
+                  <md-option *ngFor="let item of frequency" [value]="item.value">
+                    {{item.view}}
+                  </md-option>
+              </md-select>
+            </div>
+      </div>
+      <br>
+      <div>
+        <md-input-container style="width:100%"
+          hintLabel="eg: foo@baz.com">
+          <input [(ngModel)]="defaultEmail" name="defaultEmail" mdInput placeholder="Default Email">
+        </md-input-container>
+      </div>
+      <br>
+      <div style="float:right">
+        <button type="submit" md-raised-button>
+          Save
+        </button>
+        <button type="button" md-button
+            (click)="dialogRef.close()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
