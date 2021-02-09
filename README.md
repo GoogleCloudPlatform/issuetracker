@@ -1,3 +1,7 @@
+![status: inactive](https://img.shields.io/badge/status-inactive-red.svg)
+
+This project is no longer actively developed or maintained.
+
 # GitHub Issue Tracker
 
 Github Issue Tracker is a web application hosted on Google Cloud Platform that provides consolidated
